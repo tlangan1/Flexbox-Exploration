@@ -1,0 +1,30 @@
+:root {
+  --flex-wrap: no-wrap;
+  --flex-direction: row;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: var(--flex-wrap);
+}
+
+.flex-direction {
+  flex-direction: var(--flex-direction);
+}
+
+div > div {
+  border: solid;
+}
+
+main > div {
+  background-color: antiquewhite;
+}
+
+label {
+  /* This is just to get the controls from 'laying' on the affected container */
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}

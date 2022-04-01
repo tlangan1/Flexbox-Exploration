@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Flexbox exploration</h1>
+      <h2>Divs in a div that has the default display property of "block"</h2>
+      <div>
+        <div>One</div>
+        <div>Two</div>
+        <div>
+          Three <br />has <br />extra <br />text that in this example has some
+          line breaks interspersed.
+        </div>
+        <div>
+          Four is just a really really really really really really really really
+          really really really really really really really really really really
+          really really really really really really really really really really
+          really really really really long sentence.
+        </div>
+      </div>
+      <h2>Divs in a div that has the display property of "flex".</h2>
+      <p>
+        To create an overflow condition click
+        <button class="add-flex-item">here</button> to add a flex item that
+        contains a really long word. Each time you click another is added. If
+        you are in "no-wrap" mode the flex items will eventually overflow the
+        flex container. Then, play with the wrap and wrap-reverse options to see
+        what happens. Click <button class="remove-flex-items">here</button> to
+        remove that added flex items.
+      </p>
+      <p>
+        You can change the flex-wrap and flex-direction properties using the
+        controls below.
+      </p>
+      <label for="flex-wrap">Flex Wrap: </label>
+      <select name="flex-wrap">
+        <option value="no-wrap">no-wrap (Default)</option>
+        <option value="wrap">wrap</option>
+        <option value="wrap-reverse">wrap-reverse</option>
+      </select>
+      <label for="flex-direction">Flex Direction: </label>
+      <select name="flex-direction">
+        <option value="row">row (Default)</option>
+        <option value="row-reverse">row-reverse</option>
+        <option value="column">column</option>
+        <option value="column-reverse">column-reverse</option>
+      </select>
+      <div class="flex-container flex-wrap flex-direction">
+        <div>One</div>
+        <div>Two</div>
+        <div>
+          Three <br />has <br />extra <br />text that in this example has some
+          line breaks interspersed.
+        </div>
+        <div>
+          Four is just a really really really really really really really really
+          really really really really really really really really really really
+          really really really really really really really really really really
+          really really really really long sentence.
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

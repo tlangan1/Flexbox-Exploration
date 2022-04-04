@@ -1,6 +1,10 @@
 :root {
+  /* Defaults */
   --flex-wrap: no-wrap;
   --flex-direction: row;
+  --flex-basis: auto;
+  --flex-grow: 0;
+  --flex-shrink: 1;
 }
 
 .flex-container {
@@ -15,16 +19,35 @@
   flex-direction: var(--flex-direction);
 }
 
-div > div {
-  border: solid;
+.flex-item-basis {
+  flex-basis: var(--flex-basis);
 }
 
-main > div {
+.flex-item-grow {
+  flex-grow: var(--flex-grow);
+}
+
+.flex-item-shrink {
+  flex-shrink: var(--flex-shrink);
+}
+
+main > .flex-container {
   background-color: antiquewhite;
+}
+
+div > div {
+  border: solid;
 }
 
 label {
   /* This is just to get the controls from 'laying' on the affected container */
   display: inline-block;
   margin-bottom: 0.5rem;
+}
+
+/* ------------------------------------------------------------- */
+/* styles exclusively for flex-grow-shrink-basis-wrap.html */
+
+.flex-grow-shrink-basis-wrap {
+  min-height: 10rem;
 }

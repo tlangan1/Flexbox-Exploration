@@ -13,7 +13,7 @@
   <body>
     <main>
       <h1>Flexbox exploration</h1>
-      <h2>Divs in a div that has the default display property of "block"</h2>
+      <h2>A div container that has the default display property of "block"</h2>
       <div>
         <div>One</div>
         <div>Two</div>
@@ -28,7 +28,7 @@
           really really really really long sentence.
         </div>
       </div>
-      <h2>Divs in a div that has the display property of "flex".</h2>
+      <h2>A div container that has the display property of "flex".</h2>
       <p>
         To create an overflow condition click
         <button class="add-flex-item">here</button> to add a flex item that
@@ -38,25 +38,48 @@
         what happens. Click <button class="remove-flex-items">here</button> to
         remove that added flex items.
       </p>
-      <p>
-        You can change the flex-wrap and flex-direction properties using the
-        controls below.
-      </p>
+      <p>You can change various flex properties using the controls below.</p>
       <label for="flex-wrap">Flex Wrap: </label>
-      <select name="flex-wrap">
+      <select id="flex-wrap">
         <option value="no-wrap">no-wrap (Default)</option>
         <option value="wrap">wrap</option>
         <option value="wrap-reverse">wrap-reverse</option>
       </select>
       <label for="flex-direction">Flex Direction: </label>
-      <select name="flex-direction">
+      <select id="flex-direction">
         <option value="row">row (Default)</option>
         <option value="row-reverse">row-reverse</option>
         <option value="column">column</option>
         <option value="column-reverse">column-reverse</option>
       </select>
+      <label for="flex-grow">Flex Grow: </label>
+      <input
+        type="number"
+        min="0"
+        step="any"
+        required="true"
+        value="0"
+        id="flex-grow"
+      />
+      <label for="flex-shrink">Flex Shrink: </label>
+      <input
+        type="number"
+        min="0"
+        step="any"
+        required="true"
+        value="1"
+        id="flex-shrink"
+      />
+      <label for="flex-basis">Flex Basis: </label>
+      <input
+        type="text"
+        step="any"
+        required="true"
+        value="auto"
+        id="flex-basis"
+      />
       <div class="flex-container flex-wrap flex-direction">
-        <div>One</div>
+        <div class="flex-item-basis flex-item-grow flex-item-shrink">One</div>
         <div>Two</div>
         <div>
           Three <br />has <br />extra <br />text that in this example has some

@@ -2,9 +2,18 @@
   /* Defaults */
   --flex-wrap: no-wrap;
   --flex-direction: row;
-  --flex-basis: auto;
-  --flex-grow: 0;
-  --flex-shrink: 1;
+  --flex-basis-1: auto;
+  --flex-grow-1: 0;
+  --flex-shrink-1: 1;
+  --flex-basis-2: auto;
+  --flex-grow-2: 0;
+  --flex-shrink-2: 1;
+  --flex-basis-3: auto;
+  --flex-grow-3: 0;
+  --flex-shrink-3: 1;
+  --flex-basis-4: auto;
+  --flex-grow-4: 0;
+  --flex-shrink-4: 1;
 }
 
 .flex-container {
@@ -19,16 +28,92 @@
   flex-direction: var(--flex-direction);
 }
 
-.flex-item-basis {
-  flex-basis: var(--flex-basis);
+.flex-item-basis:nth-child(1) div {
+  position: absolute;
+  display: none;
+  background-color: aliceblue;
 }
 
-.flex-item-grow {
-  flex-grow: var(--flex-grow);
+.flex-item-basis:nth-child(1):hover div {
+  display: block;
 }
 
-.flex-item-shrink {
-  flex-shrink: var(--flex-shrink);
+.flex-item-basis:nth-child(1) {
+  flex-basis: var(--flex-basis-1);
+}
+
+.flex-item-basis:nth-child(1) {
+  flex-grow: var(--flex-grow-1);
+}
+
+.flex-item-basis:nth-child(1) {
+  flex-shrink: var(--flex-shrink-1);
+}
+
+.flex-item-basis:nth-child(2) div {
+  position: absolute;
+  display: none;
+  background-color: aliceblue;
+}
+
+.flex-item-basis:nth-child(2):hover div {
+  display: block;
+}
+
+.flex-item-basis:nth-child(2).flex-item-basis {
+  flex-basis: var(--flex-basis-2);
+}
+
+.flex-item-basis:nth-child(2).flex-item-grow {
+  flex-grow: var(--flex-grow-2);
+}
+
+.flex-item-basis:nth-child(2).flex-item-shrink {
+  flex-shrink: var(--flex-shrink-2);
+}
+
+.flex-item-basis:nth-child(3) div {
+  position: absolute;
+  display: none;
+  background-color: aliceblue;
+}
+
+.flex-item-basis:nth-child(3):hover div {
+  display: block;
+}
+
+.flex-item-basis:nth-child(3).flex-item-basis {
+  flex-basis: var(--flex-basis-3);
+}
+
+.flex-item-basis:nth-child(3).flex-item-grow {
+  flex-grow: var(--flex-grow-3);
+}
+
+.flex-item-basis:nth-child(3).flex-item-shrink {
+  flex-shrink: var(--flex-shrink-3);
+}
+
+.flex-item-basis:nth-child(4) div {
+  position: absolute;
+  display: none;
+  background-color: aliceblue;
+}
+
+.flex-item-basis:nth-child(4):hover div {
+  display: block;
+}
+
+.flex-item-basis:nth-child(4).flex-item-basis {
+  flex-basis: var(--flex-basis-4);
+}
+
+.flex-item-basis:nth-child(4).flex-item-grow {
+  flex-grow: var(--flex-grow-4);
+}
+
+.flex-item-basis:nth-child(4).flex-item-shrink {
+  flex-shrink: var(--flex-shrink-4);
 }
 
 main > .flex-container {

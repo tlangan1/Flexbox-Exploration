@@ -7,7 +7,7 @@ addEventListener("load", onLoad);
 
 function onLoad() {
   //----------------------------------
-  // flex container properties
+  // set flex container properties
   //----------------------------------
   // attach a 'change' event listener to the "flex wrap" select element.
   if (document.querySelector("#flex-wrap")) {
@@ -30,38 +30,15 @@ function onLoad() {
   }
 
   //----------------------------------
-  // flex item properties
+  // changing and displaying flex item properties to flex items
   //----------------------------------
-  // attach a 'change' event listener to the "flex-grow" textbox element.
-  if (document.querySelector("#flex-grow")) {
-    document
-      .querySelector("#flex-grow")
-      .addEventListener(
-        "change",
-        createChangePropertyEventListener("--flex-grow")
-      );
-  }
+  document
+    .querySelectorAll(".flex-container > *")
+    .forEach(addClickEventListenerToFlexItem);
 
-  // attach a 'change' event listener to the "flex-shrink" textbox element.
-  if (document.querySelector("#flex-shrink")) {
-    document
-      .querySelector("#flex-shrink")
-      .addEventListener(
-        "change",
-        createChangePropertyEventListener("--flex-shrink")
-      );
-  }
-
-  // attach a 'change' event listener to the "flex-basis" textbox element.
-  if (document.querySelector("#flex-basis")) {
-    document
-      .querySelector("#flex-basis")
-      .addEventListener(
-        "change",
-        createChangePropertyEventListener("--flex-basis")
-      );
-  }
-
+  //----------------------------------
+  // adding and removing flex items
+  //----------------------------------
   // attach a 'click' event listener to the "add-flex-item" button.
   if (document.querySelector(".add-flex-item")) {
     document
@@ -76,8 +53,10 @@ function onLoad() {
       .addEventListener("click", removeFlexItems);
   }
 
-  // getProperty usage: cssGlobalProperties.getProperty("--some-property")
-  // setProperty usage: cssGlobalProperties.setProperty("--some-property", "2")
+  //--------------------------------------------
+  // Interface to custom CSS properties on the ":root" element
+  //--------------------------------------------
+
   var cssGlobalProperties = CSSProperties(document.querySelector(":root"));
 
   // --------------------------------------------------
@@ -112,7 +91,7 @@ function onLoad() {
   }
 
   // --------------------------------------------------
-  // The helper functions for the executable code above
+  // Helper functions for custom CSS properties manipulation
 
   function CSSProperties(element) {
     function getProperty(propertyName) {
@@ -123,5 +102,69 @@ function onLoad() {
     }
 
     return { getProperty: getProperty, setProperty: setProperty };
+  }
+
+  // --------------------------------------------------
+  // Helper functions for adding and removing flex item properties to flex items
+
+  function addClickEventListenerToFlexItem(flexItem, index) {
+    // Note that this needs to be a toggle event listener.
+    // Each time you click on a flex item it toggles whether or not the flex item properties are applied.
+    flexItem.addEventListener("click", createToggleFlexItemAttributes(++index));
+
+    //--------------------------------------------
+    // when hovering over a flex item display its flex item properties and associated values
+    //--------------------------------------------
+    document
+      .querySelector(".flex-item-basis:nth-child(" + index + ")")
+      .addEventListener("mouseover", updateContents);
+    // --------------------------------------------------
+    // The helper functions for the executable code above
+
+    function createToggleFlexItemAttributes(flexItemIndex) {
+      var defaultAttributesSet = true;
+
+      return toggleFlexItemAttributes;
+
+      // --------------------------------------------------
+      // The helper functions for the executable code above
+
+      function toggleFlexItemAttributes() {
+        if (defaultAttributesSet) {
+          // change flex CSS custom properties for this flex item to the selected values
+          cssGlobalProperties.setProperty(
+            "--flex-basis-" + flexItemIndex,
+            document.querySelector("#flex-basis").value
+          );
+          cssGlobalProperties.setProperty(
+            "--flex-grow-" + flexItemIndex,
+            document.querySelector("#flex-grow").value
+          );
+          cssGlobalProperties.setProperty(
+            "--flex-shrink-" + flexItemIndex,
+            document.querySelector("#flex-shrink").value
+          );
+          // TODO: using the hover pseudo class indicate the values that the flex items currently have
+        } else {
+          // change flex CSS custom properties for this flex item to the defaults
+          cssGlobalProperties.setProperty(
+            "--flex-basis-" + flexItemIndex,
+            "auto"
+          );
+          cssGlobalProperties.setProperty("--flex-grow-" + flexItemIndex, 0);
+          cssGlobalProperties.setProperty("--flex-shrink-" + flexItemIndex, 1);
+        }
+        defaultAttributesSet = !defaultAttributesSet;
+      }
+    }
+
+    function updateContents() {
+      // TODO: show the grow and shrink attributes and values with <br /> elements in between
+      document.querySelector(
+        ".flex-item-basis:nth-child(" + index + ") div"
+      ).innerHTML =
+        "flex-basis: " +
+        cssGlobalProperties.getProperty("--flex-basis-" + index);
+    }
   }
 }
